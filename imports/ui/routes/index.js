@@ -5,19 +5,23 @@ Vue.use(VueRouter)
 const routes=[
     {
         path:'/',
-        component:()=>import('../pages/Home.vue')
+        component:()=>import('../pages/Home.vue'),
+        name:'Home'
     },
     {
         path:'/user',
-        component:()=>import('../pages/User.vue')
+        component:()=>import('../pages/User.vue'),
+        name:'User'
     },
     {
         path:'/customer',
-        component:()=>import('../pages/Customer.vue')
+        component:()=>import('../pages/Customer.vue'),
+        name:'Customer'
     },
     {
         path:'/item',
-        component:()=>import('../pages/Item.vue')
+        component:()=>import('../pages/Item.vue'),
+        name:'Item'
     },
 ]
 const router=new VueRouter({

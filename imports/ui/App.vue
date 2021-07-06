@@ -34,6 +34,7 @@
     </q-drawer>
 
     <q-page-container>
+      <div class="text-center text-h5">{{ $route.name }}</div>
       <router-view />
     </q-page-container>
   </q-layout>
