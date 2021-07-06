@@ -39,13 +39,28 @@
       </div>
     </div>
     <div class="text-center">
-      <q-btn label="Submit" color="primary" @click="handleSubmit" />
+      <q-btn
+        :label="updateDoc ? `Update` : `Submit`"
+        color="primary"
+        @click="handleSubmit"
+      />
     </div>
   </div>
 </template>
 
 <script>
 export default {
+  props: {
+    updateDoc: {
+      default: null,
+      type: Object,
+    },
+  },
+  mounted() {
+    if (this.updateDoc) {
+      this.form = this.updateDoc;
+    }
+  },
   data() {
     return {
       form: {
@@ -70,7 +85,7 @@ export default {
   },
   methods: {
     handleSubmit() {
-      console.log("form:", this.form);
+      this.$emit("close", this.form);
     },
   },
 };
