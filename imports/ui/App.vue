@@ -29,6 +29,12 @@
             </q-item-section>
             <q-item-section> Customer </q-item-section>
           </q-item>
+          <q-item clickable v-ripple to="/category">
+            <q-item-section avatar>
+              <q-icon name="backup_table" />
+            </q-item-section>
+            <q-item-section> Category </q-item-section>
+          </q-item>
         </q-list>
       </q-scroll-area>
     </q-drawer>

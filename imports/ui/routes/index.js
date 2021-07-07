@@ -23,6 +23,11 @@ const routes=[
         component:()=>import('../pages/Item.vue'),
         name:'Item'
     },
+    {
+        path:'/category',
+        component:()=>import('../pages/Category.vue'),
+        name:'Category'
+    },
 ]
 const router=new VueRouter({
     routes
