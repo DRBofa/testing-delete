@@ -35,6 +35,12 @@
             </q-item-section>
             <q-item-section> Category </q-item-section>
           </q-item>
+          <q-item clickable v-ripple to="/item">
+            <q-item-section avatar>
+              <q-icon name="dns" />
+            </q-item-section>
+            <q-item-section> Item </q-item-section>
+          </q-item>
         </q-list>
       </q-scroll-area>
     </q-drawer>
