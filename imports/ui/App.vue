@@ -47,6 +47,12 @@
             </q-item-section>
             <q-item-section> Supplier </q-item-section>
           </q-item>
+          <q-item clickable v-ripple to="/purchase">
+            <q-item-section avatar>
+              <q-icon name="inventory" />
+            </q-item-section>
+            <q-item-section> Purchase </q-item-section>
+          </q-item>
         </q-list>
       </q-scroll-area>
     </q-drawer>

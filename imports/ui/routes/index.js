@@ -33,6 +33,11 @@ const routes=[
         component:()=>import('../pages/Supplier.vue'),
         name:'Supplier'
     },
+    {
+        path:'/purchase',
+        component:()=>import('../pages/Purchase.vue'),
+        name:'Purchase'
+    },
 ]
 const router=new VueRouter({
     routes
