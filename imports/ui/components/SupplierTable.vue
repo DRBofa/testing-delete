@@ -6,7 +6,6 @@
           <th class="text-left">No</th>
           <th class="text-left">Company Name</th>
           <th class="text-left">Owner Name</th>
-
           <th class="text-left">Phone</th>
           <th class="text-left">Address</th>
           <th class="text-left">Status</th>
