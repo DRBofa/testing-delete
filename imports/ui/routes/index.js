@@ -28,6 +28,11 @@ const routes=[
         component:()=>import('../pages/Category.vue'),
         name:'Category'
     },
+    {
+        path:'/supplier',
+        component:()=>import('../pages/Supplier.vue'),
+        name:'Supplier'
+    },
 ]
 const router=new VueRouter({
     routes

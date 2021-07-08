@@ -41,6 +41,12 @@
             </q-item-section>
             <q-item-section> Item </q-item-section>
           </q-item>
+          <q-item clickable v-ripple to="/supplier">
+            <q-item-section avatar>
+              <q-icon name="maps_home_work" />
+            </q-item-section>
+            <q-item-section> Supplier </q-item-section>
+          </q-item>
         </q-list>
       </q-scroll-area>
     </q-drawer>
