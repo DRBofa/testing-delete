@@ -53,6 +53,12 @@
             </q-item-section>
             <q-item-section> Purchase </q-item-section>
           </q-item>
+          <q-item clickable v-ripple to="/sale">
+            <q-item-section avatar>
+              <q-icon name="chrome_reader_mode" />
+            </q-item-section>
+            <q-item-section> Sale </q-item-section>
+          </q-item>
         </q-list>
       </q-scroll-area>
     </q-drawer>
