@@ -1,11 +1,19 @@
 <template>
   <div>
-    <h1>Home Page</h1>
+    <form-search-by-date @searchByDate="handleSubmit" />
   </div>
 </template>
 
 <script>
-export default {};
+import FormSearchByDate from "../components/FormSearchByDate.vue";
+export default {
+  components: { FormSearchByDate },
+  methods: {
+    handleSubmit(val) {
+      console.log("doc: ", val);
+    },
+  },
+};
 </script>
 
 <style>
