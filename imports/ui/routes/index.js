@@ -42,6 +42,16 @@ const routes=[
         path:'/sale',
         component:()=>import('../pages/Sale.vue'),
     },
+    {
+        path:'/import',
+        component:()=>import('../pages/Import.vue'),
+        name:'Import'
+    },
+    {
+        path:'/export',
+        component:()=>import('../pages/Export.vue'),
+        name:'Export'
+    },
 ]
 const router=new VueRouter({
     routes

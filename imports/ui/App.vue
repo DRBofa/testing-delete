@@ -59,6 +59,22 @@
             </q-item-section>
             <q-item-section> Sale </q-item-section>
           </q-item>
+          <q-list bordered>
+            <q-expansion-item icon="report" label="Report">
+              <q-item clickable v-ripple to="import">
+                <q-item-section avatar>
+                  <q-icon name="arrow_circle_down" />
+                </q-item-section>
+                <q-item-label>Import</q-item-label>
+              </q-item>
+              <q-item clickable v-ripple to="export">
+                <q-item-section avatar>
+                  <q-icon name="arrow_circle_up" />
+                </q-item-section>
+                <q-item-label>Export</q-item-label>
+              </q-item>
+            </q-expansion-item>
+          </q-list>
         </q-list>
       </q-scroll-area>
     </q-drawer>
