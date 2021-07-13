@@ -55,7 +55,10 @@ const routes=[
     {
         path:'/login',
         component:()=>import('../pages/Login.vue'),
-
+    },
+    {
+        path:'/test',
+        component:()=>import('../pages/Test.vue'),
     },
 ]
 const router=new VueRouter({
