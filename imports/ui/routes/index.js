@@ -52,6 +52,11 @@ const routes=[
         component:()=>import('../pages/Export.vue'),
         name:'Export'
     },
+    {
+        path:'/login',
+        component:()=>import('../pages/Login.vue'),
+
+    },
 ]
 const router=new VueRouter({
     routes
