@@ -61,10 +61,12 @@ export default {
   methods: {
     close() {
       this.dialog = false;
+      this.updateDoc = null;
       this.getData();
     },
     handleAdd() {
       this.dialog = true;
+      this.updateDoc = null;
     },
     handleDelete(id) {
       Meteor.call("customer.remove", id, (err, result) => {

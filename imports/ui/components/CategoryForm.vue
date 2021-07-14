@@ -2,7 +2,7 @@
   <div class="q-ma-md">
     <q-card>
       <q-card-section class="text-center text-h5">
-        Customer Form
+        Category Form
       </q-card-section>
       <q-card-section>
         <div class="fit row justify-evenly">
@@ -56,8 +56,16 @@ export default {
   methods: {
     handleSubmit() {
       this.form.dob = moment(this.form.dob, "YYYY-MM-DD").toDate();
-      console.log("form:", this.form);
-      this.$emit("close", this.form);
+      let method = "category.insert";
+      if (this.updateDoc) {
+        // code update
+        method = "category.update";
+      }
+      Meteor.call(method, this.form, (err, result) => {
+        if (result) {
+          this.$emit("close");
+        }
+      });
     },
   },
 };
