@@ -13,7 +13,7 @@
             <q-input type="date" outlined v-model="form.date" label="Date" />
           </div>
           <div class="col-xs-12 col-sm-4 q-ma-sm">
-            <q-input outlined v-model="form.description" label="Descriptin" />
+            <q-input outlined v-model="form.description" label="Description" />
           </div>
 
           <div class="col-xs-12 col-sm-4 q-ma-sm"></div>
@@ -55,7 +55,7 @@ export default {
   },
   methods: {
     handleSubmit() {
-      this.form.dob = moment(this.form.dob, "YYYY-MM-DD").toDate();
+      this.form.date = moment(this.form.date, "YYYY-MM-DD").toDate();
       let method = "category.insert";
       if (this.updateDoc) {
         // code update

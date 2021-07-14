@@ -61,7 +61,7 @@ export default {
   methods: {
     close() {
       this.dialog = false;
-      this.updateDoc = null;
+
       this.getData();
     },
     handleAdd() {

@@ -6,7 +6,7 @@
           <th class="text-left">No</th>
           <th class="text-left">Name</th>
           <th class="text-left">Date</th>
-          <th class="text-left">Descriptin</th>
+          <th class="text-left">Description</th>
           <th class="text-left">Actions</th>
         </tr>
       </thead>
