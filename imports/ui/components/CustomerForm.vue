@@ -81,8 +81,19 @@ export default {
   methods: {
     handleSubmit() {
       this.form.dob = moment(this.form.dob, "YYYY-MM-DD").toDate();
-      console.log("form:", this.form);
-      this.$emit("close", this.form);
+      let method = "";
+      if (this.updateDoc) {
+        // code update
+        method = "customer.update";
+      } else {
+        // code insert
+        method = "customer.insert";
+      }
+      Meteor.call(method, this.form, (err, result) => {
+        if (result) {
+          this.$emit("close");
+        }
+      });
     },
   },
 };

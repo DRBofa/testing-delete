@@ -51,53 +51,39 @@ export default {
   data() {
     return {
       dialog: false,
-      customers: [
-        {
-          _id: "01",
-          name: "Jame",
-          gender: "male",
-          dob: new Date(),
-          phone: "017233344",
-          address: "Battambang",
-          status: "active",
-        },
-      ],
+      customers: [],
       updateDoc: null,
     };
   },
+  mounted() {
+    this.getData();
+  },
   methods: {
-    close(doc) {
-      if (doc._id) {
-        // code update
-        let index = this.customers.findIndex((obj) => {
-          return obj._id == doc._id;
-        });
-        this.customers[index].name = doc.name;
-        this.customers[index].gender = doc.gender;
-        this.customers[index].dob = doc.dob;
-        this.customers[index].phone = doc.phone;
-        this.customers[index].address = doc.address;
-        this.customers[index].status = doc.status;
-      } else {
-        // code insert
-        this.customers.push(doc);
-      }
+    close() {
       this.dialog = false;
+      this.getData();
     },
     handleAdd() {
       this.dialog = true;
     },
     handleDelete(id) {
-      console.log("id:", id);
-      let index = this.customers.findIndex((doc) => {
-        return doc._id == id;
+      Meteor.call("customer.remove", id, (err, result) => {
+        if (result) {
+          this.getData();
+        }
       });
-      this.customers.splice(index, 1);
     },
     handleEdit(doc) {
       this.dialog = true;
       this.updateDoc = Object.assign({}, doc);
       this.updateDoc.dob = moment(doc.dob).format("YYYY-MM-DD");
+    },
+    getData() {
+      Meteor.call("customer.find", (err, result) => {
+        if (result) {
+          this.customers = result;
+        }
+      });
     },
   },
 };
