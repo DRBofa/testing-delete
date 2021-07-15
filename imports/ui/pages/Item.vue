@@ -47,53 +47,41 @@ export default {
   data() {
     return {
       dialog: false,
-      items: [
-        {
-          _id: "01",
-          name: "Coca",
-          date: new Date(),
-          categoryId: "01",
-          categoryName: "Soft-Drink",
-          description: "Cocal 250ML",
-          status: "active",
-        },
-      ],
+      items: [],
       updateDoc: null,
     };
   },
+  mounted() {
+    this.getData();
+  },
   methods: {
-    close(doc) {
-      if (doc._id) {
-        // code update
-        let index = this.items.findIndex((obj) => {
-          return obj._id == doc._id;
-        });
-        this.items[index].name = doc.name;
-        this.items[index].date = doc.date;
-        this.items[index].categoryId = doc.categoryId;
-        this.items[index].categoryName = doc.categoryName;
-        this.items[index].description = doc.description;
-        this.items[index].status = doc.status;
-      } else {
-        // code insert
-        this.items.push(doc);
-      }
+    close() {
       this.dialog = false;
+      this.getData();
     },
     handleAdd() {
       this.dialog = true;
+      this.updateDoc = null;
     },
     handleDelete(id) {
-      console.log("id:", id);
-      let index = this.items.findIndex((doc) => {
-        return doc._id == id;
+      Meteor.call("item.remove", id, (err, result) => {
+        if (result) {
+          this.getData();
+        }
       });
-      this.items.splice(index, 1);
     },
     handleEdit(doc) {
       this.dialog = true;
       this.updateDoc = Object.assign({}, doc);
+      delete this.updateDoc.categoryName;
       this.updateDoc.date = moment(doc.date).format("YYYY-MM-DD");
+    },
+    getData() {
+      Meteor.call("item.find", (err, result) => {
+        if (result) {
+          this.items = result;
+        }
+      });
     },
   },
 };

@@ -23,7 +23,7 @@
             <q-input type="date" outlined v-model="form.date" label="Date" />
           </div>
           <div class="col-xs-12 col-sm-4 q-ma-sm">
-            <q-input outlined v-model="form.description" label="Descriptin" />
+            <q-input outlined v-model="form.description" label="Description" />
           </div>
           <div class="col-xs-12 col-sm-4 q-ma-sm">
             <fieldset>
@@ -76,29 +76,24 @@ export default {
   },
   methods: {
     handleSubmit() {
-      this.form.dob = moment(this.form.dob, "YYYY-MM-DD").toDate();
-      let index = this.categoryOpts.findIndex((doc) => {
-        return this.form.categoryId == doc._id;
+      this.form.date = moment(this.form.date, "YYYY-MM-DD").toDate();
+      let method = "item.insert";
+      if (this.updateDoc) {
+        method = "item.update";
+      }
+
+      Meteor.call(method, this.form, (err, result) => {
+        if (result) {
+          this.$emit("close");
+        }
       });
-      this.form.categoryName = this.categoryOpts[index].name;
-      console.log("form:", this.form);
-      this.$emit("close", this.form);
     },
     getCategory() {
-      this.categoryOpts = [
-        {
-          _id: "01",
-          name: "Soft-Drink",
-          date: new Date(),
-          description: "soft drink",
-        },
-        {
-          _id: "02",
-          name: "Food",
-          date: new Date(),
-          description: "Food",
-        },
-      ];
+      Meteor.call("category.find", (err, result) => {
+        if (result) {
+          this.categoryOpts = result;
+        }
+      });
     },
   },
 };

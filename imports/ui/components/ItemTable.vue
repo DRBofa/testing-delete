@@ -7,7 +7,7 @@
           <th class="text-left">Name</th>
           <th class="text-left">Category</th>
           <th class="text-left">Date</th>
-          <th class="text-left">Descriptin</th>
+          <th class="text-left">Description</th>
           <th class="text-left">Status</th>
           <th class="text-left">Actions</th>
         </tr>
