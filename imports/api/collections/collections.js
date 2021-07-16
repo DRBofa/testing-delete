@@ -6,3 +6,4 @@ export const Item = new Mongo.Collection("items");
 export const Supplier = new Mongo.Collection("suppliers");
 export const Import = new Mongo.Collection("imports");
 export const Purchase = new Mongo.Collection("purchases");
+export const Export = new Mongo.Collection("exports");
