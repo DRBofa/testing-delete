@@ -114,51 +114,25 @@ export default {
   methods: {
     handleSubmit() {
       this.form.date = moment(this.form.date, "YYYY-MM-DD").toDate();
-      let index = this.supplierOpts.findIndex((doc) => {
-        return this.form.supplierId == doc._id;
+      Meteor.call("purchase.add", this.form, (err, result) => {
+        if (result) {
+          this.$emit("close");
+        }
       });
-      let indexItem = this.itemOpts.findIndex((doc) => {
-        return this.form.itemId == doc._id;
-      });
-
-      this.form.name = this.itemOpts[indexItem].name;
-      this.form.company = this.supplierOpts[index].company;
-      console.log("form:", this.form);
-      this.$emit("close", this.form);
     },
     getItem() {
-      this.itemOpts = [
-        {
-          _id: "01",
-          name: "Coca",
-          categoryName: "Drink",
-          categoryId: "01",
-          date: new Date(),
-          description: "Coca 1.25L",
-          satus: "active",
-        },
-        {
-          _id: "02",
-          name: "Spy",
-          categoryName: "Drink",
-          categoryId: "01",
-          date: new Date(),
-          description: "Spy 1.25L",
-          satus: "active",
-        },
-      ];
+      Meteor.call("item.find", (err, result) => {
+        if (result) {
+          this.itemOpts = result;
+        }
+      });
     },
     getSupplier() {
-      this.supplierOpts = [
-        {
-          _id: "01",
-          company: "Cambodia Soft-Drink",
-          ownerName: "Chetra",
-          phone: "010202033",
-          address: "Battambang",
-          status: "active",
-        },
-      ];
+      Meteor.call("supplier.find", (err, result) => {
+        if (result) {
+          this.supplierOpts = result;
+        }
+      });
     },
   },
 };

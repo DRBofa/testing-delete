@@ -10,7 +10,6 @@
           <th class="text-left">Quantity</th>
           <th class="text-left">Date</th>
           <th class="text-left">Status</th>
-          <th class="text-left">Actions</th>
         </tr>
       </thead>
       <tbody>
@@ -22,15 +21,6 @@
           <td class="text-left">{{ item.qty }}</td>
           <td class="text-left">{{ item.date | toDate }}</td>
           <td class="text-left">{{ item.status }}</td>
-          <td class="text-left">
-            <q-btn
-              icon="delete"
-              color="red"
-              dense
-              @click="handleDelete(item._id)"
-            />
-            <q-btn icon="edit" color="info" dense @click="handleEdit(item)" />
-          </td>
         </tr>
       </tbody>
     </q-markup-table>
@@ -52,10 +42,6 @@ export default {
     },
   },
   methods: {
-    handleDelete(id) {
-      console.log("delete", id);
-      this.$emit("delete", id);
-    },
     handleEdit(doc) {
       this.$emit("edit", doc);
     },
