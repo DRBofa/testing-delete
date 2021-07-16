@@ -143,14 +143,21 @@ export default {
           qty: it.qty,
         });
       });
-      console.log("doc", doc);
-      this.clearForm();
+      Meteor.call("invoice.insert", doc, (err, result) => {
+        if (result) {
+          this.clearForm();
+        }
+      });
     },
     handleRemove(index) {
       this.form.items.splice(index, 1);
     },
     getInvoiceNumber() {
-      this.form.invoiceNumber = 1;
+      Meteor.call("invoice.number", (err, result) => {
+        if (result) {
+          this.form.invoiceNumber = result;
+        }
+      });
     },
     total() {
       let total = 0;
@@ -176,34 +183,18 @@ export default {
       console.log("form", this.form);
     },
     getPurchase() {
-      this.itemOpts = [
-        {
-          _id: "01",
-          itemId: "01",
-          name: "Coca",
-          price: 5500,
-          qty: 15,
-        },
-        {
-          _id: "02",
-          itemId: "02",
-          name: "Spy",
-          price: 6000,
-          qty: 12,
-        },
-      ];
+      Meteor.call("purchase.find", (err, result) => {
+        if (result) {
+          this.itemOpts = result;
+        }
+      });
     },
     getCustomer() {
-      this.customerOpts = [
-        {
-          _id: "01",
-          name: "Sopheak Chan",
-        },
-        {
-          _id: "02",
-          name: "Leakena",
-        },
-      ];
+      Meteor.call("customer.find", (err, result) => {
+        if (result) {
+          this.customerOpts = result;
+        }
+      });
     },
   },
 };
