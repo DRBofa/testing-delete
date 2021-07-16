@@ -45,57 +45,44 @@
 <script>
 import SupplierForm from "../components/SupplierForm.vue";
 import SupplierTable from "../components/SupplierTable.vue";
-import moment from "moment";
 export default {
   components: { SupplierForm, SupplierTable },
   data() {
     return {
       dialog: false,
-      suppliers: [
-        {
-          _id: "01",
-          company: "Cambodia Soft-Drink",
-          ownerName: "Chetra",
-
-          phone: "017233344",
-          address: "Battambang",
-          status: "active",
-        },
-      ],
+      suppliers: [],
       updateDoc: null,
     };
   },
+  mounted() {
+    this.getData();
+  },
   methods: {
-    close(doc) {
-      if (doc._id) {
-        // code update
-        let index = this.suppliers.findIndex((obj) => {
-          return obj._id == doc._id;
-        });
-        this.suppliers[index].company = doc.company;
-        this.suppliers[index].ownerName = doc.ownerName;
-        this.suppliers[index].phone = doc.phone;
-        this.suppliers[index].address = doc.address;
-        this.suppliers[index].status = doc.status;
-      } else {
-        // code insert
-        this.suppliers.push(doc);
-      }
+    close() {
       this.dialog = false;
+      this.getData();
     },
     handleAdd() {
       this.dialog = true;
+      this.updateDoc = null;
     },
     handleDelete(id) {
-      console.log("id:", id);
-      let index = this.suppliers.findIndex((doc) => {
-        return doc._id == id;
+      Meteor.call("supplier.remove", id, (err, result) => {
+        if (result) {
+          this.getData();
+        }
       });
-      this.suppliers.splice(index, 1);
     },
     handleEdit(doc) {
       this.dialog = true;
       this.updateDoc = Object.assign({}, doc);
+    },
+    getData() {
+      Meteor.call("supplier.find", (err, result) => {
+        if (result) {
+          this.suppliers = result;
+        }
+      });
     },
   },
 };

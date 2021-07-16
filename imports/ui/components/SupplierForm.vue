@@ -67,7 +67,12 @@ export default {
   },
   methods: {
     handleSubmit() {
-      this.$emit("close", this.form);
+      let method = this.updateDoc ? "supplier.update" : "supplier.insert";
+      Meteor.call(method, this.form, (err, result) => {
+        if (result) {
+          this.$emit("close");
+        }
+      });
     },
   },
 };
